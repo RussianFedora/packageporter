@@ -13,9 +13,9 @@
 			</tr>
 			{% for pkg in packages %}
 			<tr>
-			  <td><a href="/packages/package/{{ pkg.pkg_id }}">{{ pkg.pkg_name }}</a></td>
-			  <td><a href="/owners/owner/{{ pkg.pkg_owner.owner_id }}">{{ pkg.pkg_owner }}</a></td>
-			  <td><a hred="/repos/repo/{{ pkg.pkg_repo.repo_id }}">{{ pkg.pkg_repo }}</a></td>
+			  <td><a href="/porter/packages/package/{{ pkg.pkg_id }}">{{ pkg.pkg_name }}</a></td>
+			  <td><a href="/porter/owners/owner/{{ pkg.pkg_owner.owner_id }}">{{ pkg.pkg_owner }}</a></td>
+			  <td><a hred="/porter/repos/repo/{{ pkg.pkg_repo.repo_id }}">{{ pkg.pkg_repo }}</a></td>
 			  <td></td>
 			</tr>
 			{% endfor %}

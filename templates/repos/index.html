@@ -19,7 +19,7 @@
 
           {% if can_add %}
           <h4>New:</h4>
-          <form action="/repos/" method="post">{% csrf_token %}
+          <form action="/porter/repos/" method="post">{% csrf_token %}
           {{ form.as_p }}
           <input type="submit" name="add_new_repo_submit" value="Add new repository" />
           <input type="submit" name="add_new_repotype_submit" value="Add new repository type" />
