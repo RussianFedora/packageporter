@@ -5,9 +5,9 @@
         {% block content %}
 		<div class="module">
 		  <p>
-		  <a href="/packages/builds/all/">All builds</a>
+		  <a href="/porter/packages/builds/all/">All builds</a>
 		  </p>
-		  <form action="/packages/builds/" method="post">{% csrf_token %}
+		  <form action="/porter/packages/builds/" method="post">{% csrf_token %}
 			{{ formset.management_form }}
 			<table>
 			  <caption>Builded packages</caption>
