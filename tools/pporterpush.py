@@ -214,9 +214,9 @@ class PushToRepo(object):
         
         if cursor.rowcount > 0:
             self.logger.debug("Found %s records" % cursor.rowcount)
-            cmd_list_per_dist = []
+            cmd_list_per_dist = {}
             for d in external_dists:
-                cmd_list_per_dist[d] = {}
+                cmd_list_per_dist[d] = []
 
             # pre compose
             for record in cursor:
