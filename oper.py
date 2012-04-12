@@ -309,12 +309,6 @@ class PushPackagesToRepo(object):
             push = self._generate_call_list(bpkg, build_repo)
             push.save()
 
-            #buf = ""
-            #return_result = subprocess.call(str(' ').join(cmd),shell=True)#, stdout=buf, stderr=buf)
-            #all_stdout.append(buf)
-            #if return_result != 0:
-            #    continue
-            
             if build_repo.rt_id == 1:
                 bpkg.remove_old_operations()
                 bpkg.oper_pre_push(user, build_repo)
