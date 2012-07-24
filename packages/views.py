@@ -12,7 +12,7 @@ from packageporter.oper import PushPackagesToRepo, UpdateFromKoji, ShareOperatio
 from packageporter.packages.forms import SelectPackagesFormSet, BuildsInitialData, PackageForm
 
 @csrf_protect
-@login_required(login_url='/porter/accounts/login/')
+@login_required(login_url='/accounts/login/')
 def index(request):
     if request.method == 'POST':
         formset = SelectPackagesFormSet(request.POST)
@@ -52,7 +52,7 @@ def index(request):
             elif action_type == 'cancel':
                 push.cancel_packages()
 
-            return HttpResponseRedirect('/porter/packages/builds/')
+            return HttpResponseRedirect('/packages/builds/')
         else:
             for form in formset:
                 print(form.errors)
@@ -74,7 +74,7 @@ def allbuilds(request):
     return render_to_response('packages/builds.html', c)
 
 @csrf_protect
-@login_required(login_url='/porter/accounts/login/')
+@login_required(login_url='/accounts/login/')
 def packages(request):
     if not request.user.has_perm('packageporter.can_push_all_packages'):
         allpkgs = Packages.objects.filter(pkg_owner=ShareOperations.get_owner_by_name(request.user.username))
@@ -86,8 +86,8 @@ def packages(request):
     return render_to_response('packages/packages.html', toform)
 
 @csrf_protect
-@login_required(login_url='/porter/accounts/login/')
-def package_edit(request, pkg_id, redir_page='/porter/packages/'):
+@login_required(login_url='/accounts/login/')
+def package_edit(request, pkg_id, redir_page='/packages/'):
     if request.method == 'POST':
         form = PackageForm(request.POST)
         if form.is_valid():

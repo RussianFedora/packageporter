@@ -14,9 +14,9 @@
 			</tr>
 			{% for bpkg in bpkg_list %}
 			<tr>
-			  <td><a href="/porter/packages/package/{{ bpkg.build_pkg.pkg_id }}">{{ bpkg.full_build_package_name }}</a></td>
+			  <td><a href="/packages/package/{{ bpkg.build_pkg.pkg_id }}">{{ bpkg.full_build_package_name }}</a></td>
 			  <td><a href="http://koji.russianfedora.ru/koji/buildinfo?buildID={{ bpkg.build_id }}">{{ bpkg.completion_time }}</a></td>
-			  <td><a hred="/porter/owners/owner/{{ bpkg.owner.owner_id }}">{{ bpkg.owner.owner_name }}</a></td>
+			  <td><a hred="/owners/owner/{{ bpkg.owner.owner_id }}">{{ bpkg.owner.owner_name }}</a></td>
 			  <td></td>
 			</tr>
 			{% endfor %}

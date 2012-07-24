@@ -5,9 +5,9 @@
         {% block content %}
 		<div class="module">
 		  <p>
-		  <a href="/porter/packages/builds/all/">All builds</a>
+		  <a href="/packages/builds/all/">All builds</a>
 		  </p>
-		  <form action="/porter/packages/builds/" method="post">{% csrf_token %}
+		  <form action="/packages/builds/" method="post">{% csrf_token %}
 			{{ formset.management_form }}
 			<table>
 			  <caption>Builded packages</caption>
@@ -25,7 +25,7 @@
                 {% if form.selectable.value %}
                 <td>{{ form.selectable }}{{ form.selected_package }}</td>
                 {% else %}
-                <td>{{ form.selectable }}<a href='/porter/packages/package/{{ form.pkg_id.value }}/'>fix</a></td>
+                <td>{{ form.selectable }}<a href='/packages/package/{{ form.pkg_id.value }}/'>fix</a></td>
                 {% endif %}
                 
 

@@ -172,10 +172,10 @@ class UpdateFromKoji(object):
         # select only success builds state=1
 
         ul = UpdateLog.objects.all().filter(is_last=True)
-        if len(ul) == 0:
-            c.execute("select * from build where state='1'")
-        else:
-            c.execute("select * from build where (state='1' and id>'%s')" % ul[0].last_build_id)
+        #if len(ul) == 0:
+        c.execute("select * from build where state='1'")
+        #else:
+        #    c.execute("select * from build where (state='1' and id>'%s')" % ul[0].last_build_id)
 
         last_build_id = 0
 

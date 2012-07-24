@@ -12,7 +12,7 @@ class NewRepoForm(forms.Form):
     name = forms.CharField()
 
 @csrf_protect
-@login_required(login_url='/porter/accounts/login/')
+@login_required(login_url='/accounts/login/')
 def index(request):
     if request.method == 'POST':
         form = NewRepoForm(request.POST)
@@ -31,7 +31,7 @@ def index(request):
                     raise Http404
                 newrt.save()
                 
-            return HttpResponseRedirect('/porter/repos/')
+            return HttpResponseRedirect('/repos/')
     
     try:
         repos = Repos.objects.order_by('repo_name')
