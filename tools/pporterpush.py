@@ -134,6 +134,8 @@ class PushToRepo(object):
             except IOError, e:
                 self.logger.error(e)
                 raise PPorterException(e)
+            except OSError, e:
+                self.logger.error(e)
 
     def run_cmd(self, _id, cmd):
         self.logger.debug("Try to start command %s" % cmd)
