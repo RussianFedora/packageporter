@@ -274,6 +274,8 @@ class PushPackagesToRepo(object):
 
     def _generate_call_list(self, build, build_repo):
         dist, ver  = self._dist_and_ver_from_tag(build.tag_name)
+        if (len(dist) == 0) or ( len(ver) == 0 ):
+            return None
         '''l = []
         l.append('/home/pushrepo/bin/koji-pp')
         l.append('--id %s' % build.build_id)
@@ -307,7 +309,10 @@ class PushPackagesToRepo(object):
 
             # cmd to push
             push = self._generate_call_list(bpkg, build_repo)
-            push.save()
+            if push in not None:
+                push.save()
+            else:
+                return "Something wrong! Call elemc!"
 
             if build_repo.rt_id == 1:
                 bpkg.remove_old_operations()
