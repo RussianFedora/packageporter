@@ -315,7 +315,7 @@ class PushPackagesToRepo(object):
 
             # cmd to push
             push = self._generate_call_list(bpkg, build_repo)
-            if push in not None:
+            if push is not None:
                 push.save()
             else:
                 return "Something wrong! Call elemc!"
