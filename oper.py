@@ -189,7 +189,8 @@ class UpdateFromKoji(object):
                 tag_name= self._get_tag_for_build(_id)
 
                 # check tag_name
-                check_dist,check_ver = self._dist_and_ver_from_tag(tag_name)
+                checker = PushPackagesToRepo([])
+                check_dist,check_ver = checker._dist_and_ver_from_tag(tag_name)
                 if len(check_dist) == 0 or len(check_ver) == 0:
                     continue
 
