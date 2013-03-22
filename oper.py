@@ -187,6 +187,12 @@ class UpdateFromKoji(object):
                 package = self.get_package(pkg_id)
                 owner   = self.get_owner(owner_id)
                 tag_name= self._get_tag_for_build(_id)
+
+                # check tag_name
+                check_dist,check_ver = self._dist_and_ver_from_tag(tag_name)
+                if len(check_dist) == 0 or len(check_ver) == 0:
+                    continue
+
                 if (package is not None) and (owner is not None):
                     new_bp = BuildedPackages(build_id=_id, 
                                              build_pkg=package, 
