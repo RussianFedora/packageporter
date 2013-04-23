@@ -187,6 +187,13 @@ class UpdateFromKoji(object):
                 package = self.get_package(pkg_id)
                 owner   = self.get_owner(owner_id)
                 tag_name= self._get_tag_for_build(_id)
+
+                # check tag_name
+                checker = PushPackagesToRepo([])
+                check_dist,check_ver = checker._dist_and_ver_from_tag(tag_name)
+                if len(check_dist) == 0 or len(check_ver) == 0:
+                    continue
+
                 if (package is not None) and (owner is not None):
                     new_bp = BuildedPackages(build_id=_id, 
                                              build_pkg=package, 
@@ -309,7 +316,7 @@ class PushPackagesToRepo(object):
 
             # cmd to push
             push = self._generate_call_list(bpkg, build_repo)
-            if push in not None:
+            if push is not None:
                 push.save()
             else:
                 return "Something wrong! Call elemc!"
