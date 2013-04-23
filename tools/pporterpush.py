@@ -23,7 +23,9 @@ DBNAME          = "pkgporter"
 
 # Scripts
 SCRIPT_PUSH     = "/home/pushrepo/bin/koji-pp"
-SCRIPT_CHK_IDLE = "rsync -a knight.yandex.net::{{repo}}/.idle"
+#SCRIPT_CHK_IDLE = "rsync -a knight.yandex.net::{{repo}}/.idle"
+RSYNC_SERVER_N	= "pull-mirror.yandex.net"
+SCRIPT_CHK_IDLE = "rsync -a %s::{{repo}}/.idle" % RSYNC_SERVER_N
 
 try:
     import psycopg2
@@ -184,7 +186,7 @@ class PushToRepo(object):
         # .startpush
         self.logger.debug("Try create and rsync .startpush")
         dot_start_filename = self._dot_push_file('.startpush')
-        result_dot_start = self.run_cmd(0, "rsync -a %s knight.yandex.net::%s/" % (dot_start_filename, dist))
+        result_dot_start = self.run_cmd(0, "rsync -a %s %s::%s/" % (dot_start_filename, RSYNC_SERVER_N, dist))
         if result_dot_start != 0:
             self.logger.error("Error while rsync .startpush, skip this dist")
             return
@@ -206,7 +208,7 @@ class PushToRepo(object):
         # .endpush
         self.logger.debug("Try create and rsync .endpush")
         dot_end_filename = self._dot_push_file('.endpush')
-        result_dot_end = self.run_cmd(0, "rsync -a %s knight.yandex.net::%s/" % (dot_end_filename, dist))
+        result_dot_end = self.run_cmd(0, "rsync -a %s %s::%s/" % (dot_end_filename, RSYNC_SERVER_N, dist))
         if result_dot_end != 0:
             self.logger.error("Error while rsync .endpush")
 
